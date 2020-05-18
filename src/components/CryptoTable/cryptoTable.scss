@@ -1,0 +1,27 @@
+.coin {
+  width: 40px;
+  height: 40px;
+  &__icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+.table {
+  margin-bottom: 0;
+  th,
+  td {
+    vertical-align: baseline;
+  }
+}
+.up {
+  color: green;
+}
+
+.down {
+  color: red;
+}
+
+
+.unchanged {
+  color: orange;
+ }

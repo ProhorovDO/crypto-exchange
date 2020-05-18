@@ -1,0 +1,21 @@
+.form {
+  padding: 40px 0 0 40px;
+  &__name {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  &__categories {
+    margin-top: 20px;
+  }
+  &__wrapper {
+    display: inline-block;
+    padding: 40px;
+    background: #ffffff71;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 30px;
+    width: max-content;
+  }
+}
+.input-group {
+  width: 100%;
+}
