@@ -15,13 +15,16 @@
 }
 .up {
   color: green;
+  font-weight: bold;
 }
 
 .down {
   color: red;
+  font-weight: bold;
 }
 
-
-.unchanged {
-  color: orange;
- }
+.column {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

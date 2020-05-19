@@ -9,21 +9,21 @@ import { fetchingCoins, socketConnection, socketDisconnection } from './redux/ac
 
 
 class App extends React.Component {
+  
   componentDidMount() {
-    this.props.fetchingCoins()/* 
-    this.props.socketConnection() */
+    this.props.fetchingCoins()
   }
   render() {
     return (
       <Container fluid>
         <Nav />
-        <Button variant="primary" size="sm"  onClick={this.props.socketConnection}> subscribe </Button>
-        <Button variant="primary" size="sm"  onClick={this.props.socketDisconnection}> unsubscribe </Button>
+        <Button variant="primary" className='button' size="sm" onClick={this.props.socketConnection}> subscribe </Button>
+        <Button variant="primary" className='button' size="sm" onClick={this.props.socketDisconnection}> unsubscribe </Button>
         <Row>
-          <Col lg={4}>
-            <CryptoTable cryptoСurrency={this.props.coins}/>
+          <Col lg={6} col={12}>
+            <CryptoTable cryptoСurrency={this.props.coins} />
           </Col>
-          <Col lg={6}>
+          <Col lg={6} col={12}>
             <CryptoConverter cryptoСurrency={this.props.coins} />
           </Col>
         </Row>
@@ -33,7 +33,9 @@ class App extends React.Component {
 }
 
 const mapDispatchToProps = {
-  fetchingCoins, socketConnection, socketDisconnection
+  fetchingCoins,
+  socketConnection,
+  socketDisconnection
 }
 
 const mapStateToProps = state => ({

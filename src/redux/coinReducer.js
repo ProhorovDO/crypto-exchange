@@ -1,4 +1,4 @@
-import { COINS_IS_LOADING, FETCHING_COINS, SOCKET_DATA, SOCKET_CONNECTED, SOCKET_DISCONNECTED } from "./types"
+import { COINS_IS_LOADING, FETCHING_COINS, SOCKET_DATA, SOCKET_CONNECTED, SOCKET_DISCONNECTED, RELOADING_CURRENCY } from "./types"
 
 
 const initialState = {
@@ -20,15 +20,7 @@ export const coinReducer = (state = initialState, action) => {
     case FETCHING_COINS:
       return {
         ...state,
-        coins: action.payload.map((coin) => {
-          const obj = {
-            imageUrl: `https://www.cryptocompare.com/${coin.CoinInfo.ImageUrl}`,
-            name: coin.CoinInfo.Name,
-            fullName: coin.CoinInfo.FullName,
-            price: coin.RAW.USD.PRICE.toFixed(2),
-          };
-          return obj
-        })
+        coins: action.payload
       }
     case SOCKET_CONNECTED:
       return {
@@ -44,6 +36,11 @@ export const coinReducer = (state = initialState, action) => {
       return {
         ...state,
         socketDisconnected: false
+      }
+    case RELOADING_CURRENCY:
+      return {
+        ...state,
+        coins: Object.assign([], state.coins, action.payload)
       }
     default:
       return state

@@ -2,11 +2,9 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import "./cryptoTable.scss";
 
-const CryptoTable = ({cryptoСurrency}) => {
-  
-  
+const CryptoTable = ({ cryptoСurrency }) => {
   return (
-    <Table striped bordered hover responsive size='md'>
+    <Table striped bordered hover responsive size="md">
       <thead>
         <tr>
           <th></th>
@@ -20,11 +18,22 @@ const CryptoTable = ({cryptoСurrency}) => {
           cryptoСurrency.map((item, index) => (
             <tr key={index}>
               <td className="coin">
-                <img src={item.imageUrl} alt="coin-icon" className="coin__icon" />
+                <img
+                  src={item.imageUrl}
+                  alt="coin-icon"
+                  className="coin__icon"
+                />
               </td>
               <td>{item.name}</td>
               <td>{item.fullName}</td>
-              <td>{item.price}$</td>
+              <td className="column">
+                {item.price}$
+                {item.FLAGS === "1" ? (
+                  <i className="up">↑</i>
+                ) : item.FLAGS === "2" ? (
+                  <i className="down">↓</i> 
+                ) : null}
+              </td>
             </tr>
           ))}
       </tbody>
