@@ -1,4 +1,8 @@
-import { COINS_IS_LOADING, FETCHING_COINS, SOCKET_DATA, SOCKET_CONNECTED, SOCKET_DISCONNECTED, RELOADING_CURRENCY } from "./types";
+import {
+  COINS_IS_LOADING, FETCHING_COINS, SOCKET_DATA, SOCKET_CONNECTED,
+  SOCKET_DISCONNECTED, RELOADING_CURRENCY, FROM_CHANGE_INPUT,
+  TO_CHANGE_INPUT, FROM_CURRENCY_CHANGE, TO_CURRENCY_CHANGE
+} from "./types";
 import Axios from "axios";
 import io from "socket.io-client";
 import CCC from "../utils/ccc-streamer-utilities";
@@ -118,12 +122,6 @@ export function socketConnection() {
 //сравнение цен///
 
 
-/* const state = getState();
-      if (state.app.coins[2].name === res.FROMSYMBOL) {
-        state.app.coins[2].price = res.PRICE
-      }
-      return state.coins */
-
 
 export function reloadingCurrency(obj) {
   return {
@@ -145,7 +143,6 @@ export function rerenderCurrencyCoins() {
           dispatch({ type: RELOADING_CURRENCY, payload: obj })
         } else {
           let obj = {
-            name: coins[i].name,
             FLAGS: reloadCoins.FLAGS,
             price: coins[i].price
           }
@@ -156,25 +153,93 @@ export function rerenderCurrencyCoins() {
   }
 }
 
-/* debugger;
-const obj = {
-  id: coin.id
+///converter block
+
+
+export function fromChangeInput(value) {
+  return dispatch => {
+    dispatch({
+      type: FROM_CHANGE_INPUT,
+      payload: value
+    })
+    dispatch(fromCurrencyChangeConvert())
+  };
 };
-if (obj.id === state.app.currencyCoins.id) {
-  debugger;
-  const newObj = reloadingCoins.concat(state.app.currencyCoins)
-  dispatch({ type: RELOADING_CURRENCY, payload: newObj })
+
+export function toChangeInput(value) {
+  return dispatch => {
+    dispatch({
+      type: TO_CHANGE_INPUT,
+      payload: value
+    })
+    dispatch(toCurrencyChangeConvert())
+  };
+};
+export function fromCurrencyChange(element) {
+  return dispatch => {
+    dispatch({
+      type: FROM_CURRENCY_CHANGE,
+      payload: element
+    })
+    dispatch(fromCurrencyChangeConvert())
+  }
+};
+
+export function toCurrencyChange(element) {
+  return dispatch => {
+    dispatch({
+      type: TO_CURRENCY_CHANGE,
+      payload: element
+    })
+    dispatch(fromCurrencyChangeConvert())
+  };
+};
+
+
+export function fromCurrencyChangeConvert() {
+  return (dispatch, getState) => {
+    const state = getState();
+    const fromCoin = state.app.fromCoin;
+    const toCoin = state.app.toCoin;
+    const from = state.app.from;
+    for (let i = 0; i < 9; i++) {
+      if (from === state.app.from) {
+        if (fromCoin === state.app.coins[i].name) {
+          const fromCoinPrice = state.app.coins[i].price;
+          const valueFromCoin = fromCoinPrice * from
+          for (let k = 0; k < 9; k++) {
+            if (toCoin === state.app.coins[k].name) {
+              const toCoinPrice = state.app.coins[k].price;
+              const convert = valueFromCoin / toCoinPrice
+              dispatch({ type: TO_CHANGE_INPUT, payload: convert })
+            }
+          }
+        }
+      }
+    }
+  }
+}
+export function toCurrencyChangeConvert() {
+  return (dispatch, getState) => {
+    const state = getState();
+    const fromCoin = state.app.fromCoin;
+    const toCoin = state.app.toCoin;
+    const to = state.app.to;
+    for (let i = 0; i < 9; i++) {
+      if (to === state.app.to) {
+        if (toCoin === state.app.coins[i].name) {
+          const toCoinPrice = state.app.coins[i].price;
+          const valueFromCoin = toCoinPrice * to
+          for (let k = 0; k < 9; k++) {
+            if (fromCoin === state.app.coins[k].name) {
+              const fromCoinPrice = state.app.coins[k].price;
+              const convert = valueFromCoin / fromCoinPrice
+              dispatch({ type: FROM_CHANGE_INPUT, payload: convert })
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-}); */
-/* Object.assign(state.app.coins, state.currencyCoins).map((coin, id) => {
-  const obj = {
-    id: coin.id,
-    imageUrl: coin.imageUrl,
-    name: coin.name,
-    fullName: coin.fullName,
-    price: coin.price
-  };
-  return obj
-});
-} */

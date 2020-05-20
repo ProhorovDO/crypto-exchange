@@ -12,3 +12,10 @@ export const SOCKET_DISCONNECTED = 'SOCKET_DISCONNECTED'
 //reloadin currency 
 
 export const RELOADING_CURRENCY = 'RELOADING_CURRENCY'
+
+//converter block
+
+export const FROM_CHANGE_INPUT = 'FROM_CHANGE_INPUT'
+export const TO_CHANGE_INPUT = 'TO_CHANGE_INPUT' 
+export const FROM_CURRENCY_CHANGE = 'FROM_CURRENCY_CHANGE';
+export const TO_CURRENCY_CHANGE = 'TO_CURRENCY_CHANGE';

@@ -9,7 +9,7 @@ import { fetchingCoins, socketConnection, socketDisconnection } from './redux/ac
 
 
 class App extends React.Component {
-  
+
   componentDidMount() {
     this.props.fetchingCoins()
   }

@@ -1,4 +1,9 @@
-import { COINS_IS_LOADING, FETCHING_COINS, SOCKET_DATA, SOCKET_CONNECTED, SOCKET_DISCONNECTED, RELOADING_CURRENCY } from "./types"
+import {
+  COINS_IS_LOADING, FETCHING_COINS, SOCKET_DATA,
+  SOCKET_CONNECTED, SOCKET_DISCONNECTED, RELOADING_CURRENCY,
+  FROM_CHANGE_INPUT, TO_CHANGE_INPUT, TO_CURRENCY_CHANGE,
+  FROM_CURRENCY_CHANGE
+} from "./types"
 
 
 const initialState = {
@@ -6,7 +11,11 @@ const initialState = {
   currencyCoins: {},
   isLoading: false,
   socketConnected: false,
-  socketDisconnected: true
+  socketDisconnected: true,
+  from: 1,
+  to: 1,
+  fromCoin: 'BTC',
+  toCoin: 'BTC'
 }
 
 
@@ -25,7 +34,8 @@ export const coinReducer = (state = initialState, action) => {
     case SOCKET_CONNECTED:
       return {
         ...state,
-        socketConnected: true
+        socketConnected: true,
+        socketDisconnected: false
       }
     case SOCKET_DATA:
       return {
@@ -35,12 +45,33 @@ export const coinReducer = (state = initialState, action) => {
     case SOCKET_DISCONNECTED:
       return {
         ...state,
-        socketDisconnected: false
+        socketConnected: false,
+        socketDisconnected: true
       }
     case RELOADING_CURRENCY:
       return {
         ...state,
         coins: Object.assign([], state.coins, action.payload)
+      }
+    case FROM_CHANGE_INPUT:
+      return {
+        ...state,
+        from: action.payload
+      }
+    case TO_CHANGE_INPUT:
+      return {
+        ...state,
+        to: action.payload
+      }
+    case FROM_CURRENCY_CHANGE:
+      return {
+        ...state,
+        fromCoin: action.payload
+      }
+    case TO_CURRENCY_CHANGE:
+      return {
+        ...state,
+        toCoin: action.payload
       }
     default:
       return state
@@ -48,37 +79,3 @@ export const coinReducer = (state = initialState, action) => {
 }
 
 
-/* export function coinsReloadingCurrency(state = { initialState }, action) {
-  return {
-    info: Object.assign({}, state.coins.map((item) => {
-      const obj = {
-        name: item.name,
-        price: item.price,
-        FLAGS: null
-      }
-      return obj
-    }), state.currencyCoins),
-    info: this.info.filter(function (name) {
-      (coins.name === currency.name){
-        return name
-      }
-    })
-  }
-} */
-
-/* Object.assign({}, state.coins.map((item) => {
-  const obj = {
-    name: item.name,
-    price: item.price,
-    FLAGS: null
-  }
-  return obj
-}) *//* .filter(function (name) {
-  if (String(state.coins.name) === String(action.payload.name)) {
-    state.coins = {
-      price: action.payload.price,
-      FLAGS: action.payload.FLAGS
-    } */
-/*
-  state.currencyCoins.name.price = action.payload.price
-  state.currencyCoins.name.FLAGS = action.payload.FLAGS */
