@@ -17,8 +17,8 @@ class App extends React.Component {
     return (
       <Container fluid>
         <Nav />
-        <Button variant="primary" className='button' size="sm" onClick={this.props.socketConnection}> subscribe </Button>
-        <Button variant="primary" className='button' size="sm" onClick={this.props.socketDisconnection}> unsubscribe </Button>
+        <Button variant="outline-primary" className='button' size="sm" onClick={this.props.socketConnection}> subscribe </Button>
+        <Button variant="outline-primary" className='button' size="sm" onClick={this.props.socketDisconnection}> unsubscribe </Button>
         <Row>
           <Col lg={6} col={12}>
             <CryptoTable cryptoСurrency={this.props.coins} />
