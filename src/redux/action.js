@@ -75,11 +75,11 @@ export function socketDisconnection() {
         "5~CCCAGG~ETH~USD",
         "5~CCCAGG~XRP~USD",
         "5~CCCAGG~CRO~USD",
-        "5~CCCAGG~NYN~USD",
         "5~CCCAGG~USDT~USD",
-        "5~CCCAGG~GAPS~USD",
-        "5~CCCAGG~HMR~USD",
         "5~CCCAGG~BCH~USD",
+        "5~CCCAGG~HMR~USD",
+        "5~CCCAGG~NYN~USD",
+        "5~CCCAGG~LINK~USD",
         "5~CCCAGG~PLF~USD",
       ]
     });
@@ -97,11 +97,11 @@ export function socketConnection() {
         "5~CCCAGG~ETH~USD",
         "5~CCCAGG~XRP~USD",
         "5~CCCAGG~CRO~USD",
-        "5~CCCAGG~NYN~USD",
         "5~CCCAGG~USDT~USD",
-        "5~CCCAGG~GAPS~USD",
-        "5~CCCAGG~HMR~USD",
         "5~CCCAGG~BCH~USD",
+        "5~CCCAGG~HMR~USD",
+        "5~CCCAGG~NYN~USD",
+        "5~CCCAGG~LINK~USD",
         "5~CCCAGG~PLF~USD",
       ]
     })
